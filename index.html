@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Alert</title>
+
+<style>
+body {
+    margin: 0;
+    background: #000;
+    color: #00ff00;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+#screen {
+    padding: 25px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.warning {
+    color: red;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    animation: blink 0.5s infinite;
+}
+
+#logs {
+    margin-top: 30px;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+#timer {
+    text-align: center;
+    color: red;
+    font-size: 70px;
+    margin-top: 30px;
+}
+
+.final {
+    display: none;
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+}
+
+.final h1 {
+    color: #00ff66;
+    font-size: 45px;
+}
+
+@keyframes blink {
+    50% { opacity: 0.2; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="screen">
+
+    <div class="warning">
+        ⚠️ SECURITY ALERT ⚠️
+    </div>
+
+    <div id="logs"></div>
+
+    <div id="timer">15</div>
+
+    <div class="final" id="final">
+        <div style="font-size:70px;">😂</div>
+        <h1>NOOB!</h1>
+        <p>Tu viens de te faire avoir 😭</p>
+        <p>tout tes information on été récupérée.</p>
+    </div>
+
+</div>
+
+<script>
+
+const logs = document.getElementById("logs");
+
+const messages = [
+    "[SYSTEM] Initialisation...",
+    "[SCAN] Analyse de la connexion...",
+    "[SCAN] Vérification de sécurité...",
+    "[WARNING] Activité inhabituelle détectée...",
+    "[SYSTEM] Tentative de sécurisation...",
+    "[WARNING] Niveau d'alerte élevé...",
+    "[SYSTEM] Dernière vérification..."
+];
+
+let i = 0;
+
+function addLog() {
+
+    if (i < messages.length) {
+
+        logs.innerHTML += messages[i] + "<br>";
+
+        i++;
+
+        setTimeout(addLog, 900);
+    }
+}
+
+addLog();
+
+let time = 15;
+
+const countdown = setInterval(() => {
+
+    time--;
+
+    document.getElementById("timer").textContent = time;
+
+    if (time <= 0) {
+
+        clearInterval(countdown);
+
+        document.getElementById("screen").innerHTML = `
+            <div class="final" style="display:block;">
+                <div style="font-size:80px;">😂</div>
+                <h1>TROLL !</h1>
+                <p>Tu pensais vraiment etre inteligent ton téléphone était piraté </p>
+                <p>Rassure-toi : tout t'es donnée on été récupérée.</p>
+            </div>
+        `;
+    }
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
